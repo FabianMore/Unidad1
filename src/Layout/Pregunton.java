@@ -93,8 +93,8 @@ public class Pregunton extends Application {
 
 
         siguiente.setOnAction(event -> {
-            if(indicePreguntaActual== preguntas.size())
-                return;
+            if(indicePreguntaActual== preguntas.size()-1)
+                indicePreguntaActual=-1;
             indicePreguntaActual++;
             pregunta.setText(preguntas.get(indicePreguntaActual).getPregunta());
             respuestas.getItems().clear();
@@ -106,7 +106,7 @@ public class Pregunton extends Application {
 
         anterior.setOnAction(event -> {
             if(indicePreguntaActual== 0)
-                return;
+                indicePreguntaActual=preguntas.size();
             indicePreguntaActual--;
             resultado.setText("");
             pregunta.setText(preguntas.get(indicePreguntaActual).getPregunta());
@@ -125,24 +125,23 @@ public class Pregunton extends Application {
     private ArrayList<Pregunta> preguntas;
     private int indicePreguntaActual;
 
-   
 
     private  void cargarPreguntas(){
         indicePreguntaActual = 0;
         preguntas= new ArrayList<Pregunta>();
         preguntas.add(
-                new Pregunta("¿Cuanto es 1 + 1?",
+                new Pregunta("1. ¿ Cuanto es 1 + 1?",
                         new String[]{"1","2","3","4"}, 1));
 
         preguntas.add(
-                new Pregunta("¿Cuantos planetas tiene nuestro sistema solar",
+                new Pregunta("2. ¿Cuantos planetas tiene nuestro sistema solar",
                         new String[]{"10","2","3","8","11"}, 3));
 
         preguntas.add(
-                new Pregunta("Si tienes tres perros el grande lo das en 300, el mediano en 200, en cuanto das el chiquito?",
+                new Pregunta("3. Si tienes tres perros el grande lo das en 300, el mediano en 200, en cuanto das el chiquito?",
                         new String[]{"400","100","150","200"}, 1));
         preguntas.add(
-                new Pregunta("¿Que le pasa a lupita?",
+                new Pregunta("4. ¿Que le pasa a lupita?",
                         new String[]{"nada","quiere bailar","se callo","no se"}, 3));
     }
 }
