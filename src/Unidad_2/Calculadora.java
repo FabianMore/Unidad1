@@ -1,12 +1,14 @@
 package Unidad_2;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -18,11 +20,13 @@ public class Calculadora extends Application {
     @FXML
     private TextField display;
 
+
     @FXML
     void accionBasica(ActionEvent event) {
         numero1 = Double.valueOf(display.getText());
         display.setText("0");
         operacion = ((Button)event.getSource()).getText();
+
 
 
     }
@@ -84,6 +88,10 @@ public class Calculadora extends Application {
         operacion="";
         display.setText("0");
 
+    }
+    @FXML
+    void Salir(ActionEvent event) {
+        Platform.exit();
     }
 
     @Override
