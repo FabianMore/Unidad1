@@ -23,7 +23,7 @@ public class EditorDeTexto extends Application {
 
     private String nombreArchivo="";
     private boolean modificado;
-    private Stage stage;
+    private static Stage stage;
 
 
     @FXML
@@ -48,10 +48,11 @@ public class EditorDeTexto extends Application {
                 Files.readAllBytes(Paths.get(this.nombreArchivo))
                 )
                 );
-
+                this.stage.setTitle("Editor de texto: "+ this.nombreArchivo);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
 
     }
@@ -60,6 +61,7 @@ public class EditorDeTexto extends Application {
     void menuCerrar(ActionEvent event) {
         this.nombreArchivo= "";
         textArea.setText("");
+        this.stage.setTitle("Editor de texto: "+ this.nombreArchivo);
 
     }
 
@@ -97,6 +99,7 @@ public class EditorDeTexto extends Application {
                         Paths.get(this.nombreArchivo),
                         textArea.getText().getBytes()
                 );
+                this.stage.setTitle("Editor de texto: "+ this.nombreArchivo);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -106,6 +109,7 @@ public class EditorDeTexto extends Application {
     void menuNuevo(ActionEvent event) {
         this.nombreArchivo= "";
          textArea.setText("");
+        this.stage.setTitle("Editor de texto: "+ this.nombreArchivo);
     }
 
     @FXML
