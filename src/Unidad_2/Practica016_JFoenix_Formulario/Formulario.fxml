@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="565.0" prefWidth="553.0" style="-fx-background-color: TRANSPARENT;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Unidad_2.Practica016_JFoenix_Formulario.Formulario">
+   <children>
+      <HBox layoutY="20.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #321f68;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Separator prefWidth="200.0" visible="false" />
+            <ImageView fx:id="botonUsuario" fitHeight="91.0" fitWidth="88.0" onMouseClicked="#mostrarUsuario" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagenes/icono_usuario.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Separator prefWidth="200.0" visible="false" />
+            <ImageView fx:id="botonUbicacion" fitHeight="91.0" fitWidth="88.0" onMouseClicked="#mostrarUbicacion" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagenes/icono_mapa.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Separator prefWidth="200.0" visible="false" />
+            <ImageView fx:id="botonEscuela" fitHeight="91.0" fitWidth="88.0" onMouseClicked="#mostrarEscuela" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagenes/icono_escuela.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Separator prefWidth="200.0" visible="false" />
+            <ImageView fx:id="botonSalir" fitHeight="91.0" fitWidth="88.0" onMouseClicked="#salir" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagenes/icono_salir.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Separator prefWidth="200.0" visible="false" />
+         </children>
+      </HBox>
+      <AnchorPane fx:id="paneUsuario" layoutY="122.0" prefHeight="443.0" prefWidth="575.0" style="-fx-background-color: #321f68;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="122.0">
+         <children>
+            <Label layoutX="55.0" layoutY="71.0" text="Nombres:" textFill="#cae2e8">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="137.0" text="Apellido Paterno:" textFill="#c3e9ee">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="204.0" prefHeight="23.0" prefWidth="167.0" text="Apellido Materno:" textFill="#c9e7f2">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="271.0" text="Genero:" textFill="#d4e9f5">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField focusColor="#177234" layoutX="277.0" layoutY="71.0" prefHeight="22.0" prefWidth="208.0" style="-fx-text-fill: YELLOW; -fx-prompt-text-fill: GREEN;" unFocusColor="#f5eded" />
+            <JFXTextField focusColor="#15722b" layoutX="277.0" layoutY="137.0" prefHeight="22.0" prefWidth="208.0" style="-FX-text-fill: YELLOW;" unFocusColor="#f8e2e2" />
+            <JFXTextField focusColor="#156f0d" layoutX="277.0" layoutY="203.0" prefHeight="22.0" prefWidth="208.0" style="-FX-text-fill: YELLOW;" unFocusColor="#eee1e1" />
+            <JFXCheckBox checkedColor="#0e8047" layoutX="252.0" layoutY="273.0" style="-fx-text-fill: RED;" text="Masculino" textFill="#f8f0f0" unCheckedColor="#f8e8e8">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox checkedColor="#0b7540" layoutX="391.0" layoutY="273.0" style="-fx-text-fill: RED;" text="Femenino" textFill="#eee0e0" unCheckedColor="#f8f0f0">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </JFXCheckBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneUbicacion" layoutY="122.0" prefHeight="448.0" prefWidth="554.0" style="-fx-background-color: #a04a04;" visible="false">
+         <children>
+            <Label layoutX="55.0" layoutY="71.0" text="Calle:" textFill="#cae2e8">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="137.0" text="Colonia:" textFill="#c3e9ee">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="204.0" prefHeight="23.0" prefWidth="167.0" text="Ciudad:" textFill="#c9e7f2">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="271.0" text="C.P. :" textFill="#d4e9f5">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField focusColor="#177234" layoutX="277.0" layoutY="71.0" prefHeight="22.0" prefWidth="208.0" style="-fx-text-fill: YELLOW; -fx-prompt-text-fill: GREEN;" unFocusColor="#f5eded" />
+            <JFXTextField focusColor="#15722b" layoutX="277.0" layoutY="137.0" prefHeight="22.0" prefWidth="208.0" style="-FX-text-fill: YELLOW;" unFocusColor="#f8e2e2" />
+            <JFXTextField focusColor="#156f0d" layoutX="277.0" layoutY="203.0" prefHeight="22.0" prefWidth="208.0" style="-FX-text-fill: YELLOW;" unFocusColor="#eee1e1" />
+            <JFXTextField focusColor="#156f0d" layoutX="277.0" layoutY="271.0" prefHeight="22.0" prefWidth="208.0" style="-FX-text-fill: YELLOW;" unFocusColor="#eee1e1" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneEscuela" layoutY="127.0" prefHeight="443.0" prefWidth="554.0" style="-fx-background-color: #066621;" visible="false">
+         <children>
+            <Label layoutX="55.0" layoutY="71.0" text="Grados obtenidos:" textFill="#cae2e8">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <JFXCheckBox layoutX="67.0" layoutY="105.0" text="Primaria" textFill="#dd7f0b" unCheckedColor="#fff7f7">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox layoutX="97.0" layoutY="158.0" text="Secundaria" textFill="#cd6f0b" unCheckedColor="#fcf3f3">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox layoutX="125.0" layoutY="209.0" text="Preparatoria / Bachillerato" textFill="#d36f0b" unCheckedColor="#e8d9d9">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox layoutX="150.0" layoutY="270.0" text="Licensiatura" textFill="#c9780d" unCheckedColor="#f8f3f3">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox layoutX="176.0" layoutY="331.0" text="Postgrado" textFill="#e47e11" unCheckedColor="#ffe1e1">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+            </JFXCheckBox>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="upMapa" fitHeight="26.0" fitWidth="33.0" layoutX="201.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@imagenes/up.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="upUsuario" fitHeight="26.0" fitWidth="33.0" layoutX="71.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagenes/up.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="upEscuela" fitHeight="26.0" fitWidth="33.0" layoutX="326.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@imagenes/up.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
