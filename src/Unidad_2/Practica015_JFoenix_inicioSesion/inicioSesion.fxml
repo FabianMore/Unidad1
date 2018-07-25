@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:controller="Unidad_2.Practica015_JFoenix_inicioSesion.InicioSesion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="661.0" style="-fx-background-color: #1b2a42;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="661.0" style="-fx-background-color: #1b2a42;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Unidad_2.Practica015_JFoenix_inicioSesion.InicioSesion">
    <children>
       <ImageView fitHeight="131.0" fitWidth="128.0" layoutX="23.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
          <image>
