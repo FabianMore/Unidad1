@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="contenedor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ad405b;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Unidad_3_4.VentaNuevo">
+   <children>
+      <JFXDatePicker fx:id="fecha" layoutX="217.0" layoutY="110.0" />
+      <Label layoutX="228.0" layoutY="14.0" text="Nueva Venta">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="116.0" layoutY="113.0" text="Fecha:">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="total" focusColor="#153186" labelFloat="true" layoutX="130.0" layoutY="189.0" prefHeight="26.0" prefWidth="243.0" promptText="Total de la venta" style="-fx-text-fill: YELLOW; -fx-prompt-text-fill: RED;" unFocusColor="#8a0e0e">
+         <font>
+            <Font name="Arial Italic" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="idCliente" focusColor="#0a1e5b" layoutX="424.0" layoutY="58.0" prefHeight="22.0" prefWidth="145.0" promptText="Id Cliente" unFocusColor="#0e196b">
+         <font>
+            <Font name="Arial Italic" size="12.0" />
+         </font>
+      </JFXTextField>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagenes/ventas.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="217.0" layoutY="300.0" onAction="#guardar" prefHeight="28.0" prefWidth="82.0" style="-fx-background-color: #5b4c50;" text="Guardar">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="400.0" layoutY="303.0" onAction="#cancelar" style="-fx-background-color: #840905;" text="Cancelar">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="contenedor" prefHeight="410.0" prefWidth="600.0" style="-fx-background-color: #028204;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Unidad_3_4.ClientesNuevo">
+   <children>
+      <Label layoutX="72.0" layoutY="59.0" text="Nombre">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="97.0" text="RFC:">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="136.0" text="Calle:">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="66.0" layoutY="178.0" text="Colonia:">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="215.0" text="Ciudad:">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="254.0" text="Pais:">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="285.0" text="Telefono:">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="66.0" layoutY="328.0" text="Celular:">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="366.0" text="Email:">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="nombre" layoutX="198.0" layoutY="48.0" prefHeight="22.0" prefWidth="244.0" />
+      <JFXTextField fx:id="rfc" layoutX="198.0" layoutY="86.0" prefHeight="22.0" prefWidth="244.0" />
+      <JFXTextField fx:id="calle" layoutX="198.0" layoutY="125.0" prefHeight="22.0" prefWidth="244.0" />
+      <JFXTextField fx:id="colonia" layoutX="198.0" layoutY="167.0" prefHeight="22.0" prefWidth="244.0" />
+      <JFXTextField fx:id="ciudad" layoutX="198.0" layoutY="204.0" prefHeight="22.0" prefWidth="244.0" />
+      <JFXTextField fx:id="pais" layoutX="198.0" layoutY="243.0" prefHeight="22.0" prefWidth="244.0" />
+      <JFXTextField fx:id="telefono" layoutX="198.0" layoutY="281.0" prefHeight="22.0" prefWidth="244.0" />
+      <JFXTextField fx:id="celular" layoutX="198.0" layoutY="317.0" prefHeight="22.0" prefWidth="244.0" />
+      <JFXTextField fx:id="email" layoutX="198.0" layoutY="355.0" prefHeight="22.0" prefWidth="244.0" />
+      <JFXButton layoutX="479.0" layoutY="314.0" onAction="#guardar" style="-fx-background-color: #0a17d1;" text="Nuevo">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="479.0" layoutY="363.0" onAction="#cancelar" style="-fx-background-color: #ad0112;" text="Cancelar">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="240.0" layoutY="14.0" text="Nuevo Cliente">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="445.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagenes/cliente.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

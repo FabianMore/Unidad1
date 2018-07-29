@@ -16,12 +16,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ProveedoresEditar implements Initializable {
+public class ClientesEditar implements Initializable {
 
     private int indice;
 
     @FXML
-    private Pane contenedor;
+    private AnchorPane contenedor;
 
     @FXML
     private JFXTextField nombre;
@@ -51,9 +51,9 @@ public class ProveedoresEditar implements Initializable {
     private JFXTextField email;
 
     @FXML
-    private JFXComboBox<String> proveedor;
+    private JFXComboBox<String> cliente;
 
-    private ArrayList <Proveedor> proveedores;
+    private ArrayList <Cliente> clientes;
 
     @FXML
     void cancelar(ActionEvent event) {
@@ -69,16 +69,16 @@ public class ProveedoresEditar implements Initializable {
 
         Statement statement = connection.createStatement();
 
-        String sql = "DELETE FROM proveedores WHERE idProveedor="+
-                proveedores.get(indice).getIdProveedor();
+        String sql = "DELETE FROM clientes WHERE idClientes="+
+                clientes.get(indice).getIdCliente();
 
         statement.execute(sql);
 
         statement.close();
         connection.close();
 
-        proveedor.getItems().remove(indice);
-        proveedores.remove(indice);
+        cliente.getItems().remove(indice);
+        clientes.remove(indice);
         nombre.setText("");
         calle.setText("");
         rfc.setText("");
@@ -92,13 +92,13 @@ public class ProveedoresEditar implements Initializable {
     }
 
     @FXML
-    void guardar(ActionEvent event) throws IOException, SQLException {
+    void actualizar(ActionEvent event) throws IOException, SQLException {
         Connection connection = DriverManager.getConnection("jdbc:sqlite:pventa.db");
 
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(60);
 
-        String sql = "UPDATE proveedores SET "+
+        String sql = "UPDATE clientes SET "+
                 "nombre='"+nombre.getText()+"', "+
                 "rfc='"+rfc.getText()+"', "+
                 "calle='"+calle.getText()+"', "+
@@ -108,18 +108,18 @@ public class ProveedoresEditar implements Initializable {
                 "telefono='"+telefono.getText()+"', "+
                 "celular='"+celular.getText()+"', "+
                 "email='"+email.getText()+"' "+
-                " WHERE idProveedor= " + proveedores.get(indice).getIdProveedor();
+                " WHERE idClientes= " + clientes.get(indice).getIdCliente();
 
         statement.execute(sql);
-        proveedores.get(indice).setNombre(nombre.getText());
-        proveedores.get(indice).setRfc(rfc.getText());
-        proveedores.get(indice).setCalle(calle.getText());
-        proveedores.get(indice).setColonia(colonia.getText());
-        proveedores.get(indice).setCiudad(ciudad.getText());
-        proveedores.get(indice).setPais(pais.getText());
-        proveedores.get(indice).setTelefono(telefono.getText());
-        proveedores.get(indice).setCelular(celular.getText());
-        proveedores.get(indice).setEmail(email.getText());
+        clientes.get(indice).setNombre(nombre.getText());
+        clientes.get(indice).setRfc(rfc.getText());
+        clientes.get(indice).setCalle(calle.getText());
+        clientes.get(indice).setColonia(colonia.getText());
+        clientes.get(indice).setCiudad(ciudad.getText());
+        clientes.get(indice).setPais(pais.getText());
+        clientes.get(indice).setTelefono(telefono.getText());
+        clientes.get(indice).setCelular(celular.getText());
+        clientes.get(indice).setEmail(email.getText());
 
     }
 
@@ -130,39 +130,39 @@ public class ProveedoresEditar implements Initializable {
 
             Statement statement = connection.createStatement();
 
-            String sql = "SELECT * FROM proveedores";
+            String sql = "SELECT * FROM clientes";
 
             ResultSet resultSet = statement.executeQuery(sql);
 
-            proveedores = new ArrayList<Proveedor>();
+            clientes = new ArrayList<Cliente>();
 
             while (resultSet.next()){
-                proveedores.add(new Proveedor(resultSet.getInt("idProveedor"),
+                clientes.add(new Cliente(resultSet.getInt("idClientes"),
                         resultSet.getString("nombre"),
                         resultSet.getString("rfc"),
                         resultSet.getString("calle"),
                         resultSet.getString("colonia"),
-                                resultSet.getString("ciudad"),
-                                       resultSet.getString("pais"),
-                                                resultSet.getString("telefono"),
-                                                     resultSet.getString("celular"),
-                                                               resultSet.getString("email")
-                                                                ));
-                proveedor.getItems().add(resultSet.getString("nombre"));
+                        resultSet.getString("ciudad"),
+                        resultSet.getString("pais"),
+                        resultSet.getString("telefono"),
+                        resultSet.getString("celular"),
+                        resultSet.getString("email")
+                ));
+                cliente.getItems().add(resultSet.getString("nombre"));
 
             }
-            proveedor.setOnAction(event -> {
-                 indice = proveedor.getSelectionModel().getSelectedIndex();
+            cliente.setOnAction(event -> {
+                indice =cliente.getSelectionModel().getSelectedIndex();
 
-                nombre.setText(proveedores.get(indice).getNombre());
-                rfc.setText(proveedores.get(indice).getRfc());
-                calle.setText(proveedores.get(indice).getCalle());
-                colonia.setText(proveedores.get(indice).getColonia());
-                ciudad.setText(proveedores.get(indice).getCiudad());
-                pais.setText(proveedores.get(indice).getPais());
-                telefono.setText(proveedores.get(indice).getTelefono());
-                celular.setText(proveedores.get(indice).getCelular());
-                email.setText(proveedores.get(indice).getEmail());
+                nombre.setText(clientes.get(indice).getNombre());
+                rfc.setText(clientes.get(indice).getRfc());
+                calle.setText(clientes.get(indice).getCalle());
+                colonia.setText(clientes.get(indice).getColonia());
+                ciudad.setText(clientes.get(indice).getCiudad());
+                pais.setText(clientes.get(indice).getPais());
+                telefono.setText(clientes.get(indice).getTelefono());
+                celular.setText(clientes.get(indice).getCelular());
+                email.setText(clientes.get(indice).getEmail());
             });
 
             statement.close();

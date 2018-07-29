@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class PuntoDeVenta extends Application {
@@ -19,21 +20,31 @@ public class PuntoDeVenta extends Application {
 
     @FXML
     void acercaDe(ActionEvent event) {
+        JOptionPane.showMessageDialog(null, "Coloquese en el apartado que desea ingresar y realice una accion");
 
     }
 
     @FXML
-    void editarCliente(ActionEvent event) {
+    void editarCliente(ActionEvent event) throws IOException {
+        Parent layout = FXMLLoader.load(getClass().getResource("ClientesEditar.fxml"));
+
+        contenedor.getChildren().add(layout);
 
     }
 
     @FXML
-    void editarExistencia(ActionEvent event) {
+    void editarExistencia(ActionEvent event) throws IOException {
+        Parent layout = FXMLLoader.load(getClass().getResource("ExistenciasEditar.fxml"));
+
+        contenedor.getChildren().add(layout);
 
     }
 
     @FXML
-    void editarProducto(ActionEvent event) {
+    void editarProducto(ActionEvent event) throws IOException {
+        Parent layout = FXMLLoader.load(getClass().getResource("ProductoEditar.fxml"));
+
+        contenedor.getChildren().add(layout);
 
     }
 
@@ -47,27 +58,42 @@ public class PuntoDeVenta extends Application {
     }
 
     @FXML
-    void editarVenta(ActionEvent event) {
+    void editarVenta(ActionEvent event) throws IOException {
+        Parent layout = FXMLLoader.load(getClass().getResource("VentaEditar.fxml"));
+
+        contenedor.getChildren().add(layout);
 
     }
 
     @FXML
-    void nuevaExistencia(ActionEvent event) {
+    void nuevaExistencia(ActionEvent event) throws IOException {
+        Parent layout = FXMLLoader.load(getClass().getResource("ExistenciasNuevo.fxml"));
+
+        contenedor.getChildren().add(layout);
 
     }
 
     @FXML
-    void nuevaVenta(ActionEvent event) {
+    void nuevaVenta(ActionEvent event) throws IOException {
+        Parent layout = FXMLLoader.load(getClass().getResource("VentaNuevo.fxml"));
+
+        contenedor.getChildren().add(layout);
 
     }
 
     @FXML
-    void nuevoCliente(ActionEvent event) {
+    void nuevoCliente(ActionEvent event) throws IOException {
+        Parent layout = FXMLLoader.load(getClass().getResource("ClientesNuevo.fxml"));
+
+        contenedor.getChildren().add(layout);
 
     }
 
     @FXML
-    void nuevoProducto(ActionEvent event) {
+    void nuevoProducto(ActionEvent event) throws IOException {
+        Parent layout = FXMLLoader.load(getClass().getResource("ProductosNuevo.fxml"));
+
+        contenedor.getChildren().add(layout);
 
     }
 
