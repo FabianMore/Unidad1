@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="contenedor" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #a3c442;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Unidad_3_4.ExistenciasEditar">
    <children>
       <Label layoutX="235.0" layoutY="24.0" text="Existencia Editar">
@@ -17,11 +16,6 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="idProducto" focusColor="#096549" labelFloat="true" layoutX="412.0" layoutY="84.0" prefHeight="22.0" prefWidth="175.0" promptText="Id Producto" unFocusColor="#157240">
-         <font>
-            <Font name="Arial Bold Italic" size="12.0" />
-         </font>
-      </JFXTextField>
       <JFXTextField fx:id="cantidad" focusColor="#d77a16" labelFloat="true" layoutX="262.0" layoutY="161.0" prefHeight="22.0" prefWidth="229.0" promptText="Ingresa las Cantidad" unFocusColor="#900e0e">
          <font>
             <Font name="Arial Bold Italic" size="14.0" />
@@ -52,11 +46,13 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="existencia" layoutX="161.0" layoutY="73.0" prefHeight="22.0" prefWidth="175.0" />
-      <Label layoutX="83.0" layoutY="77.0" text="Existencia:">
+      <JFXComboBox fx:id="existencia" layoutX="204.0" layoutY="73.0" prefHeight="22.0" prefWidth="175.0" />
+      <Label layoutX="87.0" layoutY="76.0" text="Existencia:">
          <font>
             <Font name="Arial Bold Italic" size="14.0" />
          </font>
       </Label>
+      <JFXComboBox fx:id="producto" layoutX="196.0" layoutY="113.0" prefHeight="22.0" prefWidth="168.0" />
+      <Label layoutX="87.0" layoutY="117.0" prefHeight="14.0" prefWidth="74.0" text="Producto" />
    </children>
 </AnchorPane>

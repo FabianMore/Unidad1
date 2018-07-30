@@ -5,16 +5,20 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.net.URL;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ProductoNuevo {
+public class ProductoNuevo implements Initializable {
+
+    private ArrayList<Proveedor> proveedores;
 
     @FXML
     private AnchorPane contenedor;
@@ -26,8 +30,10 @@ public class ProductoNuevo {
     @FXML
     private JFXTextArea descripcion;
 
+
     @FXML
-    private JFXTextField idProveedor;
+    private ComboBox<String> Proveedor;
+
 
     @FXML
     void cancelar(ActionEvent event) {
@@ -38,19 +44,26 @@ public class ProductoNuevo {
 
     @FXML
     void guardar(ActionEvent event) throws SQLException {
+        String nombreProducto = nombre.getText();
+        String descripcionProducto = descripcion.getText();
+        int indiceSeleccionado = Proveedor.getSelectionModel().getSelectedIndex();
+        int idProveedor = proveedores.get(indiceSeleccionado).getIdProveedor();
 
         Connection connection = DriverManager.getConnection("jdbc:sqlite:pventa.db");
 
         Statement statement = connection.createStatement();
 
         String sql = "INSERT INTO productos (idProveedor,nombre, descripcion) VALUES ("+
-                "'"+idProveedor.getText()+"'," +
-                "'"+nombre.getText()+"'," +
-                "'"+descripcion.getText()+"'"+
+                "'"+idProveedor+"'," +
+                "'"+nombreProducto+"'," +
+                "'"+descripcionProducto+"'"+
                 ")";
 
+
         statement.execute(sql);
-        idProveedor.setText("");
+        statement.close();
+        connection.close();
+        Proveedor.getSelectionModel().clearSelection();
         nombre.setText("");
         descripcion.setText("");
 
@@ -58,4 +71,39 @@ public class ProductoNuevo {
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:pventa.db");
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(60);
+
+            String sql = "SELECT * FROM proveedores";
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            proveedores = new ArrayList<Proveedor>();
+
+            while (resultSet.next()){
+                Proveedor.getItems().add(resultSet.getString("nombre"));
+                proveedores.add(new Proveedor(
+                        resultSet.getInt("idProveedor"),
+                        resultSet.getString("nombre"),
+                        resultSet.getString("rfc"),
+                        resultSet.getString("calle"),
+                        resultSet.getString("colonia"),
+                        resultSet.getString("ciudad"),
+                        resultSet.getString("pais"),
+                        resultSet.getString("telefono"),
+                        resultSet.getString("celular"),
+                        resultSet.getString("email")
+                ));
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }

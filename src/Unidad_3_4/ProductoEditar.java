@@ -34,27 +34,46 @@ public class ProductoEditar implements Initializable {
     @FXML
     private JFXComboBox<String> producto;
 
+    @FXML
+    private JFXComboBox<String> proveedor;
+
     private ArrayList<Producto> productos;
+    private ArrayList<Proveedor> proveedores;
 
     @FXML
     void actualizar(ActionEvent event) throws SQLException {
 
+        String nombreProducto = nombre.getText();
+        String descripcionProducto = descripcion.getText();
+        int indiceSeleccionado = proveedor.getSelectionModel().getSelectedIndex();
+        int idProveedor = proveedores.get(indiceSeleccionado).getIdProveedor();
+        int idProducto = productos.get(indiceSeleccionado).getIdProducto();
+        int indiceSeleccionadoProducto = producto.getSelectionModel().getSelectedIndex();
+
         Connection connection = DriverManager.getConnection("jdbc:sqlite:pventa.db");
 
         Statement statement = connection.createStatement();
-        statement.setQueryTimeout(60);
 
         String sql = "UPDATE productos SET "+
-                "nombre='"+nombre.getText()+"', "+
-                "descripcion='"+descripcion.getText()+"', "+
-                "idProveedor='"+idProveedor.getText()+"' "+
+                "idProveedor="+idProveedor+", " +
+                "nombre='"+nombreProducto+"'," +
+                "descripcion='"+descripcionProducto+"' WHERE idProducto="+idProducto;
 
-                " WHERE idProducto= " + productos.get(indice).getIdProducto();
+
 
         statement.execute(sql);
-        productos.get(indice).setNombre(nombre.getText());
-        productos.get(indice).setDescripcion(descripcion.getText());
-        productos.get(indice).setIdProveedor(Integer.parseInt(idProveedor.getText()));
+        statement.close();
+        connection.close();
+
+        productos.get(indiceSeleccionadoProducto).setNombre(nombreProducto);
+        productos.get(indiceSeleccionadoProducto).setDescripcion(descripcionProducto);
+        productos.get(indiceSeleccionadoProducto).setIdProveedor(idProveedor);
+
+        proveedor.getSelectionModel().clearSelection();
+        producto.getSelectionModel().clearSelection();
+        nombre.setText("");
+        descripcion.setText("");
+
 
 
     }
@@ -69,24 +88,24 @@ public class ProductoEditar implements Initializable {
     @FXML
     void eliminar(ActionEvent event) throws SQLException {
 
+        int indice = producto.getSelectionModel().getSelectedIndex();
+        int idProducto = productos.get(indice).getIdProducto();
+
         Connection connection = DriverManager.getConnection("jdbc:sqlite:pventa.db");
-
         Statement statement = connection.createStatement();
+        statement.setQueryTimeout(60);
 
-        String sql = "DELETE FROM productos WHERE idProducto="+
-                productos.get(indice).getIdProducto();
-
+        String sql = "DELETE FROM productos WHERE idProducto="+ idProducto;
         statement.execute(sql);
 
-        statement.close();
-        connection.close();
 
-        producto.getItems().remove(indice);
-        productos.remove(indice);
-        idProveedor.setText("");
+        producto.getSelectionModel().clearSelection();
+        proveedor.getSelectionModel().clearSelection();
         nombre.setText("");
         descripcion.setText("");
 
+        productos.remove(indice);
+        producto.getItems().remove(indice);
 
     }
 
@@ -104,30 +123,74 @@ public class ProductoEditar implements Initializable {
             productos = new ArrayList<Producto>();
 
             while (resultSet.next()){
-                productos.add(new Producto(resultSet.getInt("idProducto"),
+
+                producto.getItems().add(resultSet.getString("nombre"));
+                productos.add(new Producto(
+                        resultSet.getInt("idProducto"),
+
                         resultSet.getInt("idProveedor"),
+
                         resultSet.getString("nombre"),
                         resultSet.getString("descripcion")
 
-
                 ));
-                producto.getItems().add(resultSet.getString("nombre"));
+               // producto.getItems().add(resultSet.getString("nombre"));
 
             }
-            producto.setOnAction(event -> {
+           /* producto.setOnAction(event -> {
                 indice =producto.getSelectionModel().getSelectedIndex();
 
                 nombre.setText(productos.get(indice).getNombre());
                 descripcion.setText(productos.get(indice).getDescripcion());
                 idProveedor.setText(String.valueOf(productos.get(indice).getIdProducto()));
 
-            });
+            });   */
 
-            statement.close();
-            connection.close();
-        } catch (SQLException e) {
+           // statement.close();
+            //connection.close();
+
+
+
+             sql = "SELECT * FROM proveedores";
+
+            resultSet= statement.executeQuery(sql);
+
+            proveedores = new ArrayList<Proveedor>();
+
+            while (resultSet.next()){
+
+                proveedor.getItems().add(resultSet.getString("nombre"));
+                proveedores.add(new Proveedor(
+                        resultSet.getInt("idProveedor"),
+                        resultSet.getString("nombre"),
+                        resultSet.getString("rfc"),
+                        resultSet.getString("calle"),
+                        resultSet.getString("colonia"),
+                        resultSet.getString("ciudad"),
+                        resultSet.getString("pais"),
+                        resultSet.getString("telefono"),
+                        resultSet.getString("celular"),
+                        resultSet.getString("email")
+                ));
+
+            }
+
+            } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        producto.setOnAction(event -> {
+            int indice = producto.getSelectionModel().getSelectedIndex();
+            nombre.setText(productos.get(indice).getNombre());
+            descripcion.setText(productos.get(indice).getDescripcion());
+
+            for (int i=0; i<proveedores.size(); i++){
+                if(productos.get(indice).getIdProveedor() == proveedores.get(i).getIdProveedor()){
+                     proveedor.getSelectionModel().select(i);
+                     break;
+                }
+            }
+        });
     }
 }
 

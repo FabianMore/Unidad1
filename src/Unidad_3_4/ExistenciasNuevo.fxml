@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -15,7 +16,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="idProducto" focusColor="#096549" labelFloat="true" layoutX="402.0" layoutY="74.0" prefHeight="22.0" prefWidth="175.0" promptText="Id Producto" unFocusColor="#157240">
+      <JFXTextField focusColor="#096549" labelFloat="true" layoutX="402.0" layoutY="74.0" prefHeight="22.0" prefWidth="175.0" promptText="Id Producto" unFocusColor="#157240">
          <font>
             <Font name="Arial Bold Italic" size="12.0" />
          </font>
@@ -45,5 +46,11 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </JFXButton>
+      <JFXComboBox fx:id="producto" layoutX="175.0" layoutY="75.0" prefHeight="22.0" prefWidth="188.0" />
+      <Label layoutX="99.0" layoutY="78.0" text="Producto">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

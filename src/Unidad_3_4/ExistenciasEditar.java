@@ -30,30 +30,42 @@ public class ExistenciasEditar implements Initializable {
     private AnchorPane contenedor;
 
     @FXML
+    private JFXComboBox<String> producto;
+
+    @FXML
     private JFXComboBox<String> existencia;
 
     private ArrayList<Existencia> existencias;
+    private ArrayList<Producto> productos;
 
     @FXML
     void actualizar(ActionEvent event) throws SQLException {
+        int idSelecExistencia = existencia.getSelectionModel().getSelectedIndex();
+        int idExistencia = existencias.get(idSelecExistencia).getIdExistencia();
+        int indiceProductoSeleccionado = producto.getSelectionModel().getSelectedIndex();
+        int idProducto = productos.get(indiceProductoSeleccionado).getIdProducto();
+        int cantidadExistencia = Integer.valueOf(cantidad.getText());
+        double costoExistencia = Double.valueOf(costo.getText());
 
         Connection connection = DriverManager.getConnection("jdbc:sqlite:pventa.db");
-
-
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(60);
 
-        String sql = "UPDATE existencias SET "+
-                "idProducto='"+idProducto.getText()+"', "+
-                "cantidad='"+cantidad.getText()+"', "+
-                "costo='"+costo.getText()+"' "+
-
-                " WHERE idExistencia= " + existencias.get(indice).getIdExistencia();
+        String sql = "UPDATE existencias SET idProducto="+ idProducto+
+                ", "+ "cantidad="+cantidadExistencia+", "+"costo="+costoExistencia+" WHERE idExistencia="+idExistencia;
 
         statement.execute(sql);
-        existencias.get(indice).setIdProducto(Integer.parseInt(idProducto.getText()));
-        existencias.get(indice).setCantidad(cantidad.getText());
-        existencias.get(indice).setCosto(costo.getText());
+        statement.close();
+        connection.close();
+
+        existencias.get(idSelecExistencia).setIdProducto(idProducto);
+        existencias.get(idSelecExistencia).setCosto(costoExistencia);
+        existencias.get(idSelecExistencia).setCantidad(cantidadExistencia);
+
+        existencia.getSelectionModel().clearSelection();
+        producto.getSelectionModel().clearSelection();
+        cantidad.setText("");
+        costo.setText("");
 
 
     }
@@ -67,21 +79,23 @@ public class ExistenciasEditar implements Initializable {
 
     @FXML
     void eliminar(ActionEvent event) throws SQLException {
+        int idSelecExistencia = existencia.getSelectionModel().getSelectedIndex();
+        int idExistencia = existencias.get(idSelecExistencia).getIdExistencia();
+
         Connection connection = DriverManager.getConnection("jdbc:sqlite:pventa.db");
-
         Statement statement = connection.createStatement();
+        statement.setQueryTimeout(60);
 
-        String sql = "DELETE FROM existencias WHERE idExistencia="+
-                existencias.get(indice).getIdExistencia();
-
+        String sql = "DELETE FROM existencias WHERE idExistencia="+ idExistencia;
         statement.execute(sql);
 
         statement.close();
         connection.close();
+        existencia.getItems().remove(idSelecExistencia);
+        existencias.remove(idSelecExistencia);
 
-        existencia.getItems().remove(indice);
-        existencias.remove(indice);
-        idProducto.setText("");
+        existencia.getSelectionModel().clearSelection();
+        producto.getSelectionModel().clearSelection();
         cantidad.setText("");
         costo.setText("");
 
@@ -94,38 +108,64 @@ public class ExistenciasEditar implements Initializable {
 
             Statement statement = connection.createStatement();
 
-            String sql = "SELECT * FROM existencias";
+            String sql = "SELECT * FROM productos";
 
             ResultSet resultSet = statement.executeQuery(sql);
 
-            existencias = new ArrayList<Existencia>();
+            productos = new ArrayList<Producto>();
 
             while (resultSet.next()){
-                existencias.add(new Existencia(resultSet.getInt("idExistencia"),
-                        resultSet.getInt("idProducto"),
-                        resultSet.getString("cantidad"),
-                        resultSet.getString("costo")
 
+                producto.getItems().add(resultSet.getString("nombre"));
+                productos.add(new Producto(
+                        resultSet.getInt("idProducto"),
+                        resultSet.getInt("idProveedor"),
+
+                        resultSet.getString("nombre"),
+                        resultSet.getString("descripcion")
 
                 ));
-                existencia.getItems().add(resultSet.getString("cantidad"));
 
             }
-            existencia.setOnAction(event -> {
-                indice =existencia.getSelectionModel().getSelectedIndex();
-                idProducto.setText(String.valueOf(existencias.get(indice).getIdExistencia()));
-                cantidad.setText(existencias.get(indice).getCantidad());
-                costo.setText(existencias.get(indice).getCosto());
 
+            sql = "SELECT existencias.*, productos.nombre AS prodNombre, proveedores.nombre AS provNombre FROM existencias,"+
+                    "productos, proveedores WHERE existencias.idProducto=productos.idProducto"+
+            " AND productos.idProveedor=proveedores.idProveedor";
 
-            });
+            existencias = new ArrayList<Existencia>();
+            resultSet= statement.executeQuery(sql);
 
-            statement.close();
-            connection.close();
+            while (resultSet.next()){
+
+                existencia.getItems().add(resultSet.getString("prodNombre")+
+                "[" + resultSet.getString("provNombre")+"]");
+                existencias.add(new Existencia(
+                        resultSet.getInt("idExistencia"),
+                        resultSet.getInt("idProducto"),
+                        resultSet.getInt("cantidad"),
+                        resultSet.getDouble("costo")
+
+                ));
+
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        existencia.setOnAction(event -> {
+            int indiceSeleccionadoExistencia = existencia.getSelectionModel().getSelectedIndex();
+            cantidad.setText(String.valueOf(existencias.get(indiceSeleccionadoExistencia).getCantidad()));
+            costo.setText(String.valueOf(existencias.get(indiceSeleccionadoExistencia).getCosto()));
+
+            for (int i=0; i<productos.size(); i++){
+                if(existencias.get(indiceSeleccionadoExistencia).getIdProducto() == productos.get(i).getIdProducto()){
+                    producto.getSelectionModel().select(i);
+
+                }
+            }
+        });
     }
 }
+
+//}

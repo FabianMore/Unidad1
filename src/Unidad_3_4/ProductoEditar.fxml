@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="contenedor" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #d5e00d;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Unidad_3_4.ProductoEditar">
    <children>
-      <JFXTextField fx:id="nombre" focusColor="#0f2b80" labelFloat="true" layoutX="61.0" layoutY="120.0" prefHeight="28.0" prefWidth="337.0" promptText="Nombre del producto:" unFocusColor="#112479">
+      <JFXTextField fx:id="nombre" focusColor="#0f2b80" labelFloat="true" layoutX="61.0" layoutY="134.0" prefHeight="28.0" prefWidth="337.0" promptText="Nombre del producto:" unFocusColor="#112479">
          <font>
             <Font name="Arial Bold Italic" size="14.0" />
          </font>
@@ -28,7 +27,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXTextArea fx:id="descripcion" focusColor="#152d75" labelFloat="true" layoutX="68.0" layoutY="186.0" prefHeight="131.0" prefWidth="322.0" promptText="Descripcion del producto:" unFocusColor="#200d75">
+      <JFXTextArea fx:id="descripcion" focusColor="#152d75" labelFloat="true" layoutX="68.0" layoutY="186.0" prefHeight="131.0" prefWidth="376.0" promptText="Descripcion del producto:" unFocusColor="#200d75">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
          </font>
@@ -38,26 +37,27 @@
             <Image url="@imagenes/caja.png" />
          </image>
       </ImageView>
-      <Label layoutX="229.0" layoutY="31.0" text="Producto Editar">
+      <Label layoutX="229.0" layoutY="14.0" text="Producto Editar">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="idProveedor" focusColor="#18358a" labelFloat="true" layoutX="451.0" layoutY="251.0" promptText="Id. Proveedor" unFocusColor="#191865">
-         <font>
-            <Font name="Arial Italic" size="11.0" />
-         </font>
-      </JFXTextField>
       <JFXButton layoutX="248.0" layoutY="333.0" onAction="#eliminar" style="-fx-background-color: #db4906;" text="Eliminar">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="producto" layoutX="174.0" layoutY="67.0" prefHeight="22.0" prefWidth="216.0" />
-      <Label layoutX="84.0" layoutY="70.0" text="Producto:">
+      <JFXComboBox fx:id="proveedor" layoutX="180.0" layoutY="95.0" prefHeight="22.0" prefWidth="216.0" />
+      <Label layoutX="84.0" layoutY="69.0" text="Producto:">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Label>
+      <Label layoutX="84.0" layoutY="106.0" text="Proveedor:">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="producto" layoutX="180.0" layoutY="66.0" prefHeight="22.0" prefWidth="216.0" />
    </children>
 </AnchorPane>
